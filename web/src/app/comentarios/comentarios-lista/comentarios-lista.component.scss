@@ -1,0 +1,35 @@
+    .container{
+     max-width: 90%;
+    }
+
+    .comentarios{
+
+        .header{
+            padding-bottom: 30px;
+        }
+
+        .item{
+
+        }
+
+        .item-ofensivo{
+            color: red;
+            .destaque{
+                font-weight: bold;
+            }
+        }
+        margin: 0;
+        padding: 20px 0 0 0;
+        list-style: none;
+
+        li{
+            margin-bottom: 10px;
+            margin-right: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #999;
+        }
+        .opcoes{
+            text-align: right;
+            padding-right: 5px;
+        }
+    }

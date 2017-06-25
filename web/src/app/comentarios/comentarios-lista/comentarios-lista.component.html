@@ -1,0 +1,57 @@
+ 
+ <ul class="comentarios col-md-12">
+   <div class="header">
+     <div class="row">
+        <div class="col-sm-3">
+            Impróprios: 
+            <select [(ngModel)]="OpcaoVisualizacaoImproprioSelecionado"> 
+                <option *ngFor="let item of OpcoesVisualizacaoImproprios" [value]="item">{{item}}</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            Denunciados: 
+            <select [(ngModel)]="OpcaoVisualizacaoDenunciadoSelecionado"> 
+                <option *ngFor="let item of OpcoesVisualizacaoDenunciado" [value]="item">{{item}}</option>
+            </select>
+        </div>       
+     </div>
+     <div class="row" *ngIf="podeComentar()">
+        <div class="col-sm-6">
+             <p>Comentar:</p> 
+            <textarea [(ngModel)]="comentario"></textarea>
+            <p><button *ngIf="comentario" type="button" class="btn btn-success" (click)="enviarComentario()">Enviar</button></p>
+            
+        </div>     
+     </div>  
+
+    </div>
+    <li  *ngFor="let item of Itens | comentariosPipe: { opcaoDenuncia: OpcaoVisualizacaoDenunciadoSelecionado, opcaoImproprio: OpcaoVisualizacaoImproprioSelecionado}" class="item clearfix" [class.item-ofensivo]="item.marcadoComoImproprio">
+        <div class="clearfix">
+            <div class="header">
+                <p><strong class="primary-font">{{item.nomeUsuario}} <span *ngIf="item.postadoPorModerador">(moderador)</span></strong></p>
+                <p><strong class="primary-font" [innerHTML]='item.artigoTitulo | safeHtml'></strong> </p>               
+                <small class="pull-right text-muted">
+                    <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                </small>
+            </div>
+            <p *ngIf="item.marcadoComoImproprio" class="destaque">
+              (comentário ofensivo)
+            </p>
+            <p *ngIf="item.denunciado" class="destaque">
+              (comentário denunciado)
+            </p>            
+            <p>
+                {{item.mensagem}}
+            </p>
+            <p class="opcoes">
+              <a *ngIf="item.marcadoComoImproprio" (click)="MarcarComoConfiavel(item)" class="btn btn-success" href="javascript: ">
+                  <i class="fa fa-comment" title=""> Marcar comentário como confiável</i>
+              </a>                            
+              <a *ngIf="!item.marcadoComoImproprio" (click)="MarcarComoOfensivo(item)" class="btn btn-danger" href="javascript: ">
+                  <i class="fa fa-ban" title=""> Marcar comentário como ofensivo</i>
+              </a>                 
+            </p>
+        </div>
+    </li>
+ </ul>
+

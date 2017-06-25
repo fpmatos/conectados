@@ -1,0 +1,95 @@
+<div class="col-md-12">
+    <ngb-tabset>
+        <ngb-tab title="Principal">
+            <ng-template ngbTabContent>
+                <aside id="platform-preview" class="platform-preview fixey">
+                        <div class="platform-toggle">
+                            <a class="btn btn-default refresh" (click)="updateIframes()" aria-label="Refresh"
+                                [ngClass]="{'active':iframeLoading}">
+                                <i class="fa fa-refresh fa-2x fa-fw" aria-hidden="true"
+                                    [ngClass]="{'fast-spin':iframeLoading}"></i>
+                            </a>
+                            <a [ngClass]="{active: iosActive}" (click)="setPlatform('ios')">iOS</a>
+                            <a [ngClass]="{active: androidActive}" (click)="setPlatform('android')">Android</a>
+                            <a [ngClass]="{active: windowsActive}" (click)="setPlatform('windows')">Windows</a>
+                        </div>
+                        <div id="demo-device-ios" [ngClass]="previewPlatform" [hidden]="!iosActive" class="ng-hide android">
+                            <iframe #iframe id="demo-ios" [src]="iosUrl | safeResourceUrl" frameborder="0">
+                            </iframe>
+                        </div>
+                        <div id="demo-device-android" [ngClass]="previewPlatform" [hidden]="!androidActive" class="ng-hide android">
+                            <iframe #iframe id="demo-android" [src]="androidUrl | safeResourceUrl" frameborder="0">
+                            </iframe>
+                        </div>
+                        <div id="demo-device-windows" [ngClass]="previewPlatform" [hidden]="!windowsActive" class="ng-hide android">
+                            <iframe #iframe id="demo-windows" [src]="windowsUrl | safeResourceUrl" frameborder="0">
+                            </iframe>
+                        </div>
+                    </aside>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <select class="form-control mt-3" [(ngModel)]="layoutIdSelecionado" (ngModelChange)="LayoutSelecionado($event)" [disabled]="artigo?.id">
+                        <option selected disabled value="">Selecione um Layout...</option>
+                        <option *ngFor="let item of layouts | async" [ngValue]="item.id">
+                            {{item.titulo}}
+                        </option>
+                    </select>
+                    </div>
+                    <div *ngIf="artigo?.layoutId">
+                        <div *ngFor="let conteudo of artigo?.conteudos; let i = index" [ngSwitch]="conteudo.tipoConteudo">
+                            <conteudo-video *ngSwitchCase="'Video'" [(VideoLink)]="conteudo.youtubeVideoId"></conteudo-video>
+
+                            <conteudo-imagem *ngSwitchCase="'Imagem'" [imagem]="conteudo"></conteudo-imagem>
+
+                            <conteudo-galeria *ngSwitchCase="'Galeria'" [listaArquivos]="conteudo.imagensGaleria"></conteudo-galeria>
+
+                            <conteudo-texto *ngSwitchCase="'Paragrafo'" [elementId]="'conteudo-' + i" [(texto)]="conteudo.textoParagrafo"></conteudo-texto>
+
+                            <conteudo-titulo *ngSwitchCase="'Titulo'" [elementId]="'conteudo-' + i" [(texto)]="conteudo.textoTitulo"></conteudo-titulo>
+
+                            <conteudo-enquete *ngSwitchCase="'Enquete'" [alternativas]="conteudo.alternativas" [(dataEncerramento)]="conteudo.dataEncerramentoEnquete"></conteudo-enquete>
+                        </div>
+                        <tags-select [tagsSelecionadas]="artigo.tags"></tags-select>
+
+                        <div class="card mb-3">
+                            <div class="card-header card-default">
+                                Período de publicação
+                            </div>
+                            <div class="card-block">
+                                   <div class="row">
+                                       <div class="col-md-12">
+                                            <input  class="form-control" style="float:none; display: none;" ngx-mydatepicker name="_dataPublicacao"
+                                                        [(ngModel)]="_dataPublicacao" [options]="dtOptions" #dpDataPublicacao="ngx-mydatepicker" (dateChanged)="dataPublicacaoAlterada($event)" />
+                                            <div style="padding-top: 10px; padding-bottom: 10px" *ngIf="artigo?.dataPublicacao">Data de publicação: {{ artigo?.dataPublicacao | date: 'dd/MM/yyyy hh:mm' }}</div>
+                                            <button class="btn btn-info" (click)="dpDataPublicacao.toggleCalendar()">
+                                                <i class="fa fa-calendar-check-o" title="definir data publicação" ></i> {{_dataPublicacao ? 'Alterar data de publicação' : 'Definir data de publicação'}}
+                                            </button>
+                                            <button class="btn btn-danger" (click)="resetarDataPublicacao()">
+                                                <i class="fa fa-times" title="resetar" ></i> Resetar
+                                            </button>
+                                       </div>
+                                   </div>
+                            </div>
+                        </div>
+
+                        <button *ngIf="artigo?.id" type="button" class="btn btn-success" (click)="Salvar()">Salvar</button>
+                        <button *ngIf="!artigo?.id" type="button" class="btn btn-success" (click)="Salvar()">Cadastrar</button>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Comentários" [disabled]="!artigo?.id">
+            <ng-template ngbTabContent>
+                <app-comentarios-lista [ArtigoId]="artigo.id">
+
+                </app-comentarios-lista>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+    {{artigo?.dataPublicacao}}
+    <button (click)="testar()">testar</button>
+    <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+
+    
+</div>

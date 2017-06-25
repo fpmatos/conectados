@@ -1,0 +1,12 @@
+<div class="card mb-3">
+    <div class="card-header card-default">
+        Tags
+    </div>
+    <div class="card-block">
+        <select [(ngModel)]="_tagsSelecionadas" class="form-control" (ngModelChange)="tagsAlteradas($event)" multiple>
+            <option *ngFor="let item of lista | async" [value]="item.id">
+                {{item.nome}}
+            </option>
+        </select>
+    </div>
+</div>

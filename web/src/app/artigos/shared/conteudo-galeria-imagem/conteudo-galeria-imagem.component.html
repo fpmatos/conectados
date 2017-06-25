@@ -1,0 +1,30 @@
+<input type="file"  accept=".jpg, .jpeg, .gif, .png" *ngIf="VerificarSeLimiteAindaNaoExcedido()" ng2FileSelect [uploader]="FileUploader" multiple  /><br/>
+
+<div id="list" class="row"> 
+    <div class="table-responsive col-md-12">
+        <table class="table table-striped" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th class="actions"></th>
+                 </tr>
+            </thead>
+            <tbody> 
+                <tr *ngFor="let item of _listaArquivos">
+                    <td>
+                        <img style="max-width: 100px; max-height: 100px" [src]="RetornarImagemData(item.upload?.blob, item.upload?.mediaType) | safeUrl" alt="Red dot" />                        
+                    </td>
+                    <td><input type="text" [(ngModel)]="item.descricao"/></td>
+                    <td>{{RetornarStatus(item)}}</td>
+                    <td class="actions">
+                        <div *ngIf="item.upload.id">
+                            <a class="btn btn-danger btn-xs" (click)="ExcluirItem(item)" href="javascript:" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                        </div>                       
+                    </td>
+                </tr> 
+            </tbody>
+         </table> 
+     </div>
+ </div>

@@ -1,0 +1,23 @@
+<button *ngIf="!comentarios" ion-button full (click)="carregarComentarios()">Ver comentários</button>
+<ion-list class="comentarios" *ngIf='comentarios | async; let items;'>
+  <ion-item >
+      <ion-textarea placeholder="digite um comentário" [(ngModel)]="textoComentario">    
+      </ion-textarea>  
+  </ion-item>
+  <ion-item *ngIf="textoComentario">
+    <button (click)="enviarComentario()" ion-button full icon-right>
+        Enviar         
+    </button> 
+  </ion-item>
+  <ion-item *ngFor="let comentario of items">    
+    <button *ngIf="!comentario.postadoPorModerador" item-end  (click)="reportar(comentario)">
+        <ion-icon name="warning"></ion-icon>
+    </button>   
+    <p>
+       {{ comentario.dataCriacao | date: 'dd/MM/yyyy hh:mm' }}   
+    </p>    
+    <h2>{{ !comentario.postadoPorModerador ? comentario.nomeUsuario : "Comunicação Duratex" }}</h2>
+    {{ comentario.mensagem }}
+  </ion-item>    
+</ion-list>
+

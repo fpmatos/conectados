@@ -1,0 +1,24 @@
+<div class="enquete-container" margin-vertical *ngIf="possuiResultado(); else enqueteForm">
+  <ion-list>
+    <ion-list-header>
+      Enquete
+    </ion-list-header>
+    <ion-item *ngFor="let alternativa of enquete.alternativas" 
+    [ngClass]="{'item-radio-checked' : alternativa.id == enquete.respostaId}">
+      <ion-label>{{alternativa.descricao}}</ion-label>
+      <ion-badge item-right>{{alternativa.totalRespostas}}</ion-badge>
+    </ion-item>
+  </ion-list>
+</div>
+<ng-template #enqueteForm>
+  <ion-list radio-group [(ngModel)]="selecionado">
+    <ion-list-header>
+      Enquete
+    </ion-list-header>
+    <ion-item *ngFor="let alternativa of enquete.alternativas">
+      <ion-label>{{alternativa.descricao}}</ion-label>
+      <ion-radio [value]="alternativa"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <button ion-button block [disabled]="!selecionado || loading" (click)="responderEnquete(selecionado)">Responder Enquete</button>
+</ng-template>

@@ -1,0 +1,10 @@
+<div padding>
+    <p>{{(artigo.dataPublicacao || artigo.dataCriacao) | date: 'dd/MM/yyyy hh:mm' }}</p>
+    <p>
+        <button *ngIf="!artigo.usuarioJaCurtiu" (click)="curtir()"    [disabled]="loading || preview" ion-button>Curtir</button>
+        <button *ngIf="artigo.usuarioJaCurtiu" (click)="descurtir()"  [disabled]="loading || preview" ion-button>Descurtir</button>
+
+        <span *ngIf="artigo.totalCurtidas; else primeiroCurtir">{{artigo.totalCurtidas}} pessoas curtiram!</span>
+        <ng-template #primeiroCurtir>Seja o primeiro a curtir!</ng-template>    
+    </p>
+</div>

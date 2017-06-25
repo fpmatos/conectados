@@ -1,0 +1,39 @@
+<ion-content>
+	<div class="logo">
+		<img src="assets/img/ionic-logo-white.svg" alt="ionic logo">
+	</div>
+
+	<form #loginForm="ngForm" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label stacked color="primary">Matrícula</ion-label>
+				<ion-input [(ngModel)]="login.matricula" name="matricula" type="text" #matricula="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="matricula.valid || submitted == false" color="danger" padding-left>
+				Matrícula é obrigatório.
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">CPF</ion-label>
+				<ion-input maxlength="11" [(ngModel)]="login.cpf" name="cpf" type="password" #cpf="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="cpf.valid || submitted == false" color="danger" padding-left>
+				CPF é obrigatório.
+			</p>
+
+			<p ion-text [hidden]="!mensagemErro" color="danger" padding-left>
+				{{mensagemErro}}
+			</p>
+		</ion-list>
+
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button (click)="onLogin(loginForm)" type="submit" block>Logar</button>
+			</ion-col>
+		</ion-row>
+	</form>
+
+</ion-content>

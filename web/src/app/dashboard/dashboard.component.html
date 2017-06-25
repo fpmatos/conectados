@@ -1,0 +1,15 @@
+<h2 class="text-muted">Dashboard</h2>
+<div class="row">
+    <div class="col-xl-3 col-lg-3">
+        <app-stat [link]="['/artigos']" [bgClass]="'card-info'" [icon]="'fa-newspaper-o'" [count]="totalArtigos" [label]="'Artigos'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-3">
+        <app-stat [link]="['/comentarios']" [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="totalComentarios" [label]="'Comentários'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-3">
+        <app-stat [link]="['/comentarios/denunciados']" [bgClass]="'card-danger'" [icon]="'fa-comments'" [count]="totalComentariosDenunciados" [label]="'Comentários denunciados'" ></app-stat>
+    </div>    
+    <div class="col-xl-3 col-lg-3">
+        <app-stat [link]="['/termosUsoAceitos']" [bgClass]="'card-success'" [icon]="'fa-file-text-o'" [count]="totalTermosUsoAceitos" [label]="'Termos de uso aceitos'" ></app-stat>
+    </div>      
+</div>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Termos de uso</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="about-header">
+    <img src="assets/img/ionic-logo-white.svg" alt="ionic logo">
+  </div>
+  <div padding class="about-info">
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra ipsum vel vehicula rutrum. Proin consequat, diam ut ultricies efficitur, sapien dolor faucibus nisl, eget euismod nibh purus sed dolor. Proin vulputate tellus et fermentum dignissim. Vivamus ac mi pellentesque, egestas felis ut, malesuada nibh. Suspendisse sed fringilla sapien, et fringilla ante. Proin ut justo commodo orci egestas congue sed quis metus. Aenean semper ac arcu eu efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean consectetur libero quis magna ullamcorper molestie.
+    </p>
+    <p>
+    Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce vel pretium felis. Fusce vitae ultricies tellus, quis egestas tellus. Vestibulum in orci quis nisl aliquam aliquam vitae at purus. Quisque ut justo posuere, fringilla sem ac, pretium nisi. Fusce lacinia mi vitae tristique interdum. Nulla eu massa massa. Duis vel enim nec dolor vulputate imperdiet.
+    </p>
+    <p>
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent suscipit sit amet dolor eu viverra. Vivamus tristique, libero vitae porttitor eleifend, justo lorem laoreet ante, et rhoncus lectus ante non sem. Fusce lorem ante, viverra ac turpis eget, blandit pellentesque magna. Aliquam eget tortor velit. Suspendisse eget justo a tortor tristique facilisis ut et nunc. Pellentesque fringilla justo non lacus gravida, ac elementum nunc rhoncus. Donec sollicitudin dolor sed quam tincidunt, ut varius dolor tempor. Etiam finibus dictum blandit. Proin porttitor dui nec suscipit consequat. Nulla auctor massa ac malesuada posuere. In accumsan id ex fermentum pellentesque. Donec sit amet lectus aliquet, lobortis urna at, euismod ligula. Proin et urna nisi. Donec vehicula viverra odio, eget rhoncus erat scelerisque vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    </p>
+    <p>
+    Nullam sem ex, malesuada vel dolor quis, varius viverra justo. Quisque vehicula mi a eros convallis tempus. Fusce neque elit, dapibus ac magna non, eleifend pretium felis. In in ornare purus, gravida eleifend justo. Nunc eu feugiat mi. Duis quis tellus nisi. Ut venenatis ultricies quam, vel ullamcorper risus. In luctus malesuada quam et pulvinar. Vivamus sollicitudin scelerisque mattis.
+    </p>
+    <p>
+    Vivamus id dictum mauris, in cursus ante. Quisque volutpat luctus magna vitae sodales. Morbi nec libero eu mauris egestas posuere sit amet in dolor. Sed purus tellus, egestas lacinia consequat ut, pellentesque sed ex. Aliquam pellentesque ornare congue. Donec maximus ante nec purus hendrerit, eu pretium nisl varius. Pellentesque lacinia purus velit, id ultricies justo rhoncus vitae. Praesent sed purus porttitor, scelerisque mi eu, maximus diam. Suspendisse porttitor fermentum euismod. Aliquam eu massa et risus elementum semper sit amet ut lacus. Praesent rhoncus fermentum enim, vel efficitur velit iaculis sed. Morbi laoreet quam eget massa aliquam eleifend. Nullam est lectus, cursus eu sollicitudin finibus, pretium in ante. Etiam eget mattis metus. Aliquam porttitor nulla non leo imperdiet venenatis.
+    </p>
+    <button *ngIf="botaoAceitarVisivel && !loading" ion-button (click)="aceitarTermosDeUso()" type="button" block>Aceitar Termos De Uso</button>
+  </div>
+</ion-content>

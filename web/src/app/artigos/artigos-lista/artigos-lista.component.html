@@ -1,0 +1,68 @@
+﻿<div class="opcoes">
+    <a class="btn btn-primary pull-right"
+    [routerLink]="['/artigos','new']">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Novo Artigo</a>
+</div>
+<div class="table-responsive">
+<table class="table table-striped table-sm" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <th width="40%">Título</th>
+            <th>Tags</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th class="text-center"><i title="comentários" class="fa fa-comment-o"></i></th>
+            <th class="text-center"><span title="comentários ofensivos" class="fa-stack fa">
+                    <i class="fa fa-comment fa-stack-1x"></i>
+                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                    </span></th>
+            <th class="text-center"><i title="curtidas" class="fa fa-thumbs-o-up"></i></th>
+            <th class="actions"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of Itens">
+            <td [innerHTML]='item.titulo | safeHtml'></td>
+            <td>
+                <div *ngFor="let tag of item.tags">
+                    <span class="badge" [ngClass]="{'badge-info': tag.editoria, 'badge-success': !tag.editoria }">
+                            {{tag.nome}}</span>
+                </div>
+            </td>
+            <td>
+                <div class="group-date" *ngIf="!item.dataAlteracao">
+                    <div class="date-title">criado em:</div>
+                    <div class="date-content">{{item.dataCriacao | date: 'dd/MM/yyyy'}}</div>
+                </div>
+                <div class="group-date" *ngIf="item.dataAlteracao">
+                    <div class="date-title">alterado em:</div>
+                    <div class="date-content">{{item.dataAlteracao | date: 'dd/MM/yyyy'}}</div>
+                </div>
+                <div class="group-date" *ngIf="item.dataPublicacao">
+                    <div>publicação:</div>
+                    <div class="date-content">{{item.dataPublicacao | date: 'dd/MM/yyyy'}}</div>
+                </div>
+            </td>
+            <td>{{item.usuarioCmsNome}}</td>
+            <td class="text-center">{{item.totalComentarios }}</td>
+            <td class="text-center">{{item.totalComentariosImproprios}}</td>
+            <td class="text-center">{{item.totalCurtidas}}</td>
+            <td class="text-right">
+                <div class="btn-group">
+                <a class="btn btn-info" [routerLink]="['/artigos/detalhe', item.id]">
+                        <i class="fa fa-pencil-square-o" title="editar artigo" ></i>
+                    </a>
+                <a title="desativar" *ngIf="item.ativo" (click)="Desativar(item)" class="btn btn-success" href="javascript: ">
+                        <i class="fa fa-toggle-on" title="desativar artigo"></i>
+                    </a>
+                <a *ngIf="!item.ativo" (click)="Ativar(item)" class="btn btn-danger" href="javascript: ">
+                        <i class="fa fa-toggle-off" title="ativar artigo"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>

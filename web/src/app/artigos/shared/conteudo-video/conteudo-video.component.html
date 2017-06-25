@@ -1,0 +1,50 @@
+<div class="card mb-3">
+    <div class="card-header card-default">
+        Video
+    </div>
+    <div class="card-block">
+        <input type="text" [(ngModel)]="_videoLink" *ngIf="ExibirCampoAlteracaoUrlVideo()" />
+
+        <a class="btn btn-danger" href="javascript: " (click)="ModificarLinkVideo()" *ngIf="ExibirOpcaoAlteracaoUrlVideo()">
+          <i class="fa fa-pencil-square-o" title="alterar vídeo" > Alterar Link Vídeo</i>
+        </a>
+        <a class="btn btn-info" href="javascript: " (click)="EfetivarAlterar()" *ngIf="ExibirOpcaoEfetivarAlteracao()">
+          <i class="fa fa-pencil-square-o" title="alterar vídeo" > Alterar</i>
+        </a>
+        <a class="btn btn-danger" href="javascript: " (click)="CancelarAlteracao()" *ngIf="ExibirOpcaoCancelarAlteracao()">
+          <i class="fa fa-pencil-square-o" title="alterar vídeo" > Cancelar Alteração</i>
+        </a>
+
+        <div *ngIf="ExibirThumbnailVideo()">
+            <p>
+                link do vídeo: {{ultimaUrlVideo}}
+            </p>
+            <img src="{{ GetTumbnailVideoUrl() }}"  />
+        </div>
+    </div>
+</div>
+<!--<div class="row">
+    <div class="col-md-6">
+        <input type="text" [(ngModel)]="_videoLink" *ngIf="ExibirCampoAlteracaoUrlVideo()" />
+        <div>
+
+            <a class="btn btn-danger" href="javascript: " (click)="ModificarLinkVideo()" *ngIf="ExibirOpcaoAlteracaoUrlVideo()">
+                <i class="fa fa-pencil-square-o" title="alterar vídeo"> Alterar Link Vídeo</i>
+            </a>
+            <a class="btn btn-info" href="javascript: " (click)="EfetivarAlterar()" *ngIf="ExibirOpcaoEfetivarAlteracao()">
+                <i class="fa fa-pencil-square-o" title="alterar vídeo"> Alterar</i>
+            </a>
+            <a class="btn btn-danger" href="javascript: " (click)="CancelarAlteracao()" *ngIf="ExibirOpcaoCancelarAlteracao()">
+                <i class="fa fa-pencil-square-o" title="alterar vídeo"> Cancelar Alteração</i>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6" *ngIf="ExibirThumbnailVideo()">
+        <div>
+            Id do vídeo (Youtube): {{ultimaUrlVideo}}
+        </div>
+        <div>
+            <img src="{{ GetTumbnailVideoUrl() }}" *ngIf="ultimaUrlVideo" />
+        </div>
+    </div>
+</div>-->

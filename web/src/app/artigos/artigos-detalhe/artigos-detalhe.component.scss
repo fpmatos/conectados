@@ -1,0 +1,154 @@
+.fast-spin {
+  -webkit-animation: fa-spin 0.8s infinite linear;
+  animation: fa-spin 0.8s infinite linear;
+}
+
+aside {
+    width: 467px;
+    -webkit-transform: scale(0.80);
+    -moz-transform: scale(0.80);
+    -ms-transform: scale(0.80);
+    transform: scale(0.80);
+    -webkit-transform-origin: 80% 0 0;
+    -moz-transform-origin: 80% 0 0;
+    -ms-transform-origin: 80% 0 0;
+    transform-origin: 80% 0 0;
+    z-index: 100000;
+}
+
+.platform-preview {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  right: -20px;
+
+  &.fixey {
+    position: fixed;
+    top: 57px;
+  }
+}
+
+.platform-preview .platform-toggle, .sass-platform-toggle {
+
+  a {
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 16px;
+    color: gray;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    transition: .2s color, .2s background-color;
+
+    &.active,
+    &.active:hover {
+      background-color: blue;
+      color: white;
+    }    
+
+    &:hover {
+      color: blue;
+      text-decoration: none;
+    }
+
+    &.active.refresh,
+    &.active.refresh:hover {
+      background-color: transparent;
+      color: blue;
+    }  
+  }
+}
+
+.platform-preview  .platform-toggle {
+  padding: 8px 10px 4px;
+}
+
+.sass-platform-toggle {
+  padding-top: 0px 10px 4px;
+  margin-bottom: 10px;
+  float: right;
+}
+
+#sass-variable-header {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+#sass-variables {
+  margin-bottom: 0px;
+  position: relative;
+  bottom: 15px;
+
+  .table.param-table {
+    td,
+    th {
+      white-space: nowrap;
+
+      &:last-child, &:nth-last-child(2) {
+        white-space: normal;
+      }
+
+      &:nth-last-child(2) {
+        width: 10%;
+      }
+    }
+  }
+}
+
+// @media (max-width: 1300px) and (min-width: $screen-xs) {
+//   #sass-variables {
+//     bottom: -10px;
+//   }
+// }
+
+// @media (max-width: $screen-xs) {
+//   #sass-variables {
+//     bottom: -25px;
+
+//     .table.param-table {
+//       tr,td {
+//         white-space: normal;
+//       }
+//     }
+//   }
+// }
+
+#demo-device-ios {
+  width: 467px;
+  height: 800px;
+  background: center top no-repeat url('/assets/images/devices-sprite.jpg');
+  background-size: 467px;
+  margin: 0 auto;
+
+  iframe {
+    margin-top: 85px;
+    width: 320px;
+    height: 568px;
+  }
+}
+
+#demo-device-android {
+  @extend #demo-device-ios;
+
+  background-position: center center;
+
+  iframe {
+    margin-top: 64px;
+    width: 360px;
+    height: 590px;
+  }
+}
+
+#demo-device-windows {
+  @extend #demo-device-ios;
+
+  background-position: center bottom;
+
+  iframe {
+    margin-top: 72px;
+    width: 350px;
+    height: 622px;
+    background: white;
+  }
+}

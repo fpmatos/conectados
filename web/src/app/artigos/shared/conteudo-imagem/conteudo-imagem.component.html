@@ -1,0 +1,25 @@
+<div class="card mb-3">
+    <div class="card-header card-default">
+        Imagem
+    </div>
+    <div class="card-block">
+        <div class="d-flex justify-content-between align-items-center">
+            <div *ngIf="ExibirOpcaoSelecaoImagem()">
+                <input type="file" class="form-control" accept=".jpg, .jpeg, .gif, .png" ng2FileSelect [uploader]="fileUploader" /><br/>
+                <a class="btn btn-info btn-xs" (click)="CancelarAlteracao()" href="javascript:">Cancelar Alteração</a>
+            </div>
+            <div *ngIf="ExibirImagem()">
+                <div class="image">                    
+                    <img style="max-width: 100px; max-height: 100px" [src]="RetornarImagemData(imagem.upload?.blob, imagem.upload?.mediaType) | safeUrl" alt="imagem" />
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="imagem.descricao" />
+            </div>
+            <div *ngIf="ExibirStatus()">
+                {{RetornarStatus()}}
+            </div>
+            <div *ngIf="ExibirOpcaoAlteracao()">
+                <a class="btn btn-danger btn-xs" (click)="Alterar()" href="javascript:">Alterar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center><img height="40" src="assets/img/ionic-logo-white.svg" alt="ionic logo"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="artigo$ | async as artigo; else loading">
+  <div *ngFor="let conteudo of artigo?.conteudos"
+      [ngSwitch]="conteudo.tipoConteudo">
+      <conteudo-video     *ngSwitchCase="'Video'"  [(VideoLink)]="conteudo.youtubeVideoId"></conteudo-video>
+
+      <conteudo-imagem    *ngSwitchCase="'Imagem'"  [imagem]="conteudo"></conteudo-imagem>
+
+      <conteudo-galeria   *ngSwitchCase="'Galeria'"  [listaArquivos]="conteudo.imagensGaleria"></conteudo-galeria>
+
+      <conteudo-texto     *ngSwitchCase="'Paragrafo'" [(texto)]="conteudo.textoParagrafo"></conteudo-texto>
+
+      <conteudo-enquete   *ngSwitchCase="'Enquete'"  [enquete]="conteudo"></conteudo-enquete>
+
+      <conteudo-titulo    *ngSwitchCase="'Titulo'"  [(texto)]="conteudo.textoTitulo"></conteudo-titulo>
+
+      <conteudo-curtir    *ngSwitchCase="'Titulo'"  [artigo]="artigo"></conteudo-curtir>
+  </div>
+  <hr>
+  <comentarios [artigoId]="artigo?.id"></comentarios>
+</div>
+<ng-template #loading>Carregando...</ng-template>
+</ion-content>

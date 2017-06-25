@@ -1,0 +1,50 @@
+  <div class="card mb-3">
+        <div class="card-header card-default">
+        Enquete
+      </div>
+      <div class="card-block">
+        <div class="row" *ngFor="let item of _alternativas">
+          <div class="col-md-10">
+              <textarea style="width: 100%" [(ngModel)]="item.descricao"></textarea>  
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-danger" (click)="ExcluirAlternativa(item)">
+                <i class="fa fa-times" title="excluir alternativa" ></i> 
+            </button>  
+          </div>     
+          <div class="col-md-1">
+            <span class="badge badge-info">{{item.totalRespostas || 0}}</span>
+          </div> 
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-info" (click)="AdicionarAlternativa()">
+                <i class="fa fa-plus" title="adicionar alternativa" ></i> Adicionar
+            </button>    
+          </div>   
+        </div>
+        <div class="row" style="padding-top: 10px">
+            <div class="col-md-12">
+              <ngb-accordion [closeOthers]="true" [activeIds]="_dataEncerramento ? 'avancado': ''">
+                  <ngb-panel id="avancado" title="Avançado">
+                    <ng-template ngbPanelContent>
+                    <input  class="form-control" style="float:none; display: none;" ngx-mydatepicker name="_dataEncerramento"
+                          [(ngModel)]="_dataEncerramento" [options]="dtOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" />                 
+                    <div style="padding-top: 10px; padding-bottom: 10px" *ngIf="_dataEncerramento?.dateRef">Data de encerramento: {{ _dataEncerramento?.dateRef | date: 'dd/MM/yyyy' }}</div>
+                    <button class="btn btn-info" (click)="dp.toggleCalendar()">
+                        <i class="fa fa-calendar-check-o" title="definir data encerramento" ></i> {{_dataEncerramento ? 'Alterar data de encerramento' : 'Definir data de encerramento'}} 
+                    </button>                         
+                   <button class="btn btn-danger" (click)="resetarData()">
+                        <i class="fa fa-times" title="resetar" ></i> Resetar
+                    </button>                                    
+                    </ng-template>
+                  </ngb-panel>
+              </ngb-accordion>                 
+            </div>
+        </div>                      
+      </div>
+</div>
+
+
+
+

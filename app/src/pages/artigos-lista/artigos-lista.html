@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center><img height="40" src="assets/img/ionic-logo-white.svg" alt="ionic logo"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <h2 text-center>{{configData.titulo}}</h2>
+
+  <ion-row #imageRowEl class="galeria" *ngIf="verificarSeTipoListagemGaleria(); else listagemComum;">
+      <ion-col *ngFor="let item of lista; let index = index" #colEl col-4 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+          <img tappable [src]="('data:image/jpeg;base64,'+ item.thumbnail) | safeUrl"
+              (click)="irParaArtigo(item)"/>
+      </ion-col>
+  </ion-row>
+
+  <ng-template #listagemComum>
+    <ion-list>
+      <button class="artigo" ion-item *ngFor="let item of lista" (click)="irParaArtigo(item)" [ngClass]="{'destaque': verificarSeDestaque(item), 'banner': VerificarSeBanner(item)}">
+          <ion-thumbnail item-left *ngIf="item.thumbnail">
+            <img [src]="('data:image/jpeg;base64,'+ item.thumbnail) | safeUrl"/>
+          </ion-thumbnail>                
+       
+          <ion-badge color="light" round *ngFor="let tag of item.tags">{{tag.nome}}</ion-badge>   
+          <h2 class="titulo" text-wrap [innerHTML]="item.titulo | safeHtml"></h2>                         
+
+          <div class="footer">
+            <div float-left class="data">{{item.dataCriacao | date: 'dd/MM/yyyy' }} </div>
+            <div float-right>
+              <ion-icon name="thumbs-up"> {{item.totalCurtidas}}</ion-icon>
+              <ion-icon name="text"> {{item.totalComentarios}}</ion-icon>
+            </div>
+          </div>
+        </button>
+    </ion-list>
+  </ng-template>
+
+  <ion-infinite-scroll [enabled]="!verificarSeUltimaPagina()" (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="atualizando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

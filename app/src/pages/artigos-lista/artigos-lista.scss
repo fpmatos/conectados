@@ -1,0 +1,35 @@
+.destaque{
+    background-color: #d0c8c8;
+}
+
+.galeria{
+    width: 100%;
+    img {
+        max-width: 12rem;
+        min-width: 12rem;
+    }
+}
+
+.badge {
+    margin-right: 5px;
+}
+
+.item {
+    h2 {
+        font-weight: bold;
+        min-height: 3.6em;
+        overflow: hidden;
+    }
+    ion-thumbnail {
+        min-width: 12rem;
+        min-height: 5rem;
+        img {
+            max-width: 12rem;
+            min-width: 12rem;
+        }
+    }
+
+    .footer{
+        color: color($colors, primary);
+    }
+}

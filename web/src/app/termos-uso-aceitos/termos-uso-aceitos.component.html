@@ -1,0 +1,24 @@
+<app-page-header [heading]="'Termos de uso aceitos'" [icon]="'fa-file-text-o'"></app-page-header>
+
+<br>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr >
+            <th width="40%">Matrícula</th>
+            <th>Nome</th>
+            <th>Data</th>
+
+        </tr>
+    </thead>    
+    <tbody>
+      <tr *ngFor="let item of lista | async">
+          <td>{{item.matriculaUsuario}}</td>
+          <td>{{item.nomeUsuario}}</td>
+          <td>{{item.dataAceite | date: 'dd/MM/yyyy'}}</td>
+      </tr>
+    </tbody>    
+  </table>
+</div>
+
